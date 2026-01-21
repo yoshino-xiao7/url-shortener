@@ -34,11 +34,9 @@ export async function handleRequest(
             });
         }
 
-        // 根路径返回简单提示
+        // 根路径重定向到前端
         if (path === '/') {
-            return new Response('URL Shortener Service', {
-                headers: { 'Content-Type': 'text/plain' },
-            });
+            return Response.redirect('https://dl.yukiryou.icu', 302);
         }
 
         // 短链跳转 (/:code)

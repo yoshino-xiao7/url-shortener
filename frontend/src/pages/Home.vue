@@ -70,13 +70,6 @@ function copyToClipboard() {
 
 <template>
   <div class="home-page">
-    <!-- 背景装饰 -->
-    <div class="home-bg">
-      <div class="bg-circle bg-circle-1"></div>
-      <div class="bg-circle bg-circle-2"></div>
-      <div class="bg-circle bg-circle-3"></div>
-    </div>
-
     <div class="home-container">
       <!-- Logo 和标题 -->
       <header class="home-header">

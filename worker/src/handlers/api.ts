@@ -37,12 +37,19 @@ export async function handleApi(
 ): Promise<Response> {
     const method = request.method;
 
-    // 登录接口 - 不需要认证
+    // ===== 公开接口（不需要认证）=====
+
+    // 登录接口
     if (path === '/api/login' && method === 'POST') {
         return handleLogin(request, env);
     }
 
-    // 其他 API 需要认证
+    // 公开的创建短链接口
+    if (path === '/api/shorten' && method === 'POST') {
+        return createLink(request, env);
+    }
+
+    // ===== 管理员接口（需要认证）=====
     const authResult = await verifyAuth(request, env);
     if (!authResult.valid) {
         return jsonResponse({ error: 'Unauthorized' }, 401);

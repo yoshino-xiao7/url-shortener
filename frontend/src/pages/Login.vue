@@ -22,7 +22,7 @@ async function handleLogin() {
 
   try {
     await authStore.login(username.value, password.value)
-    router.push('/')
+    router.push('/admin')
   } catch (err: any) {
     error.value = err.response?.data?.error || '登录失败，请检查用户名和密码'
   } finally {

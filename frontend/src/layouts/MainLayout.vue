@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
+const router = useRouter()
 const authStore = useAuthStore()
 
 const navItems = [
-  { path: '/', name: '仪表盘', icon: 'dashboard' },
-  { path: '/links', name: '链接管理', icon: 'link' },
-  { path: '/create', name: '创建短链', icon: 'add' }
+  { path: '/admin', name: '仪表盘', icon: 'dashboard' },
+  { path: '/admin/links', name: '链接管理', icon: 'link' },
+  { path: '/admin/create', name: '创建短链', icon: 'add' }
 ]
 
 function isActive(path: string): boolean {
@@ -17,6 +18,7 @@ function isActive(path: string): boolean {
 
 function handleLogout() {
   authStore.logout()
+  router.push('/')
 }
 </script>
 

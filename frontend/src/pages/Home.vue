@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
+// 生产环境使用 Worker 域名
+const API_URL = import.meta.env.PROD ? 'https://ki1.mom' : ''
+
 const form = ref({
   url: '',
   code: ''
@@ -29,7 +32,7 @@ async function handleSubmit() {
   error.value = ''
 
   try {
-    const response = await fetch('/api/shorten', {
+    const response = await fetch(`${API_URL}/api/shorten`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

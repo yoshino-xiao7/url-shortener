@@ -74,10 +74,7 @@ function copyToClipboard() {
       <!-- Logo 和标题 -->
       <header class="home-header">
         <div class="logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-          </svg>
+          <img src="/favicon.png" alt="Logo" />
         </div>
         <h1>短链服务</h1>
         <p class="subtitle">快速生成短链接，简洁易分享</p>
@@ -225,19 +222,18 @@ function copyToClipboard() {
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto 1.5rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  border-radius: var(--radius-xl);
-  color: white;
-  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(244, 114, 182, 0.4);
 }
 
-.logo svg {
+.logo img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .home-header h1 {

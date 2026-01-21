@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import { getStatsOverview, type StatsOverview, type Link } from '@/api'
+import { getStatsOverview, type StatsOverview } from '@/api'
 
 const stats = ref<StatsOverview | null>(null)
 const loading = ref(true)
@@ -25,6 +25,10 @@ function formatDate(date: string): string {
     hour: '2-digit',
     minute: '2-digit'
   })
+}
+
+function reload() {
+  window.location.reload()
 }
 </script>
 
@@ -50,7 +54,7 @@ function formatDate(date: string): string {
     <div v-else-if="error" class="card">
       <div class="empty-state">
         <p>{{ error }}</p>
-        <button class="btn btn-secondary" @click="location.reload()">重试</button>
+        <button class="btn btn-secondary" @click="reload()">重试</button>
       </div>
     </div>
 

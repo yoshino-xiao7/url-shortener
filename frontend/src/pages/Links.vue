@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import { getLinks, deleteLink, updateLink, type Link, type Pagination } from '@/api'
-
-const router = useRouter()
 
 const links = ref<Link[]>([])
 const pagination = ref<Pagination>({ page: 1, limit: 20, total: 0, totalPages: 0 })

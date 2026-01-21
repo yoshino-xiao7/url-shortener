@@ -36,7 +36,7 @@ function reload() {
   <div class="dashboard">
     <header class="page-header">
       <h1>仪表盘</h1>
-      <RouterLink to="/create" class="btn btn-primary">
+      <RouterLink to="/admin/create" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 8v8M8 12h8"/>
@@ -80,7 +80,7 @@ function reload() {
       <div class="card mt-6">
         <div class="card-header">
           <h2 class="card-title">最近创建</h2>
-          <RouterLink to="/links" class="btn btn-ghost btn-sm">
+          <RouterLink to="/admin/links" class="btn btn-ghost btn-sm">
             查看全部
           </RouterLink>
         </div>
@@ -123,7 +123,7 @@ function reload() {
                   {{ formatDate(link.created_at) }}
                 </td>
                 <td>
-                  <RouterLink :to="`/stats/${link.code}`" class="btn btn-ghost btn-sm">
+                  <RouterLink :to="`/admin/stats/${link.code}`" class="btn btn-ghost btn-sm">
                     统计
                   </RouterLink>
                 </td>

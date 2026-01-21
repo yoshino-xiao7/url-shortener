@@ -7,8 +7,17 @@ const API_URL = import.meta.env.PROD ? 'https://ki1.mom' : ''
 
 const form = ref({
   url: '',
-  code: ''
+  code: '',
+  expireDays: 7
 })
+
+const expireOptions = [
+  { value: 1, label: '1天' },
+  { value: 3, label: '3天' },
+  { value: 7, label: '7天' },
+  { value: 14, label: '14天' },
+  { value: 30, label: '30天' }
+]
 
 const loading = ref(false)
 const error = ref('')
@@ -32,12 +41,17 @@ async function handleSubmit() {
   error.value = ''
 
   try {
+    // 计算过期时间
+    const expiresAt = new Date()
+    expiresAt.setDate(expiresAt.getDate() + form.value.expireDays)
+    
     const response = await fetch(`${API_URL}/api/shorten`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         url: form.value.url,
-        code: form.value.code || undefined
+        code: form.value.code || undefined,
+        expires_at: expiresAt.toISOString()
       })
     })
 
@@ -56,7 +70,7 @@ async function handleSubmit() {
 }
 
 function createAnother() {
-  form.value = { url: '', code: '' }
+  form.value = { url: '', code: '', expireDays: 7 }
   createdLink.value = null
 }
 
@@ -129,6 +143,23 @@ function copyToClipboard() {
                 :disabled="loading"
                 pattern="[a-zA-Z0-9_-]+"
               />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>有效期</label>
+            <div class="expire-options">
+              <button
+                v-for="option in expireOptions"
+                :key="option.value"
+                type="button"
+                class="expire-btn"
+                :class="{ active: form.expireDays === option.value }"
+                @click="form.expireDays = option.value"
+                :disabled="loading"
+              >
+                {{ option.label }}
+              </button>
             </div>
           </div>
 
@@ -281,6 +312,36 @@ function copyToClipboard() {
 
 .code-input-wrapper .input {
   border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* 过期时间选择 */
+.expire-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.expire-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.expire-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
+.expire-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-color: transparent;
+  color: white;
 }
 
 .error-message {

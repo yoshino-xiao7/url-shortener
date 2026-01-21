@@ -78,7 +78,7 @@ function formatDate(date: string): string {
   <div class="links-page">
     <header class="page-header">
       <h1>链接管理</h1>
-      <RouterLink to="/create" class="btn btn-primary">
+      <RouterLink to="/admin/create" class="btn btn-primary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 8v8M8 12h8"/>
@@ -168,7 +168,7 @@ function formatDate(date: string): string {
               </td>
               <td>
                 <div class="actions">
-                  <RouterLink :to="`/stats/${link.code}`" class="btn btn-ghost btn-sm">
+                  <RouterLink :to="`/admin/stats/${link.code}`" class="btn btn-ghost btn-sm">
                     统计
                   </RouterLink>
                   <button 

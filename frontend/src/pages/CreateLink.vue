@@ -100,7 +100,7 @@ function copyToClipboard() {
         <button class="btn btn-primary" @click="createAnother">
           继续创建
         </button>
-        <button class="btn btn-secondary" @click="router.push('/links')">
+        <button class="btn btn-secondary" @click="router.push('/admin/links')">
           查看全部
         </button>
       </div>

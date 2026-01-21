@@ -1,0 +1,19 @@
+name = "url-shortener"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# 绑定 D1 数据库
+[[d1_databases]]
+binding = "DB"
+database_name = "url-shortener-db"
+database_id = "54f2136f-c9ad-418a-a272-9a205dd2014f"  # 创建数据库后替换
+
+# 生产环境配置
+[env.production]
+routes = [
+  { pattern = "ki1.mom", custom_domain = true }
+]
+
+# 开发时的变量（生产环境通过 wrangler secret 设置）
+[vars]
+CORS_ORIGIN = "https://dl.yukiryou.icu"
